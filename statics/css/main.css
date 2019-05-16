@@ -1,0 +1,45 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    padding: 0;
+    margin: 0;
+
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+
+    font-family: 'Calibri', 'Monospace', 'Arial', 'Sans';
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.box-1,
+.box-2,
+.box-3 {
+    width: 100%;
+}
+
+.table-row {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.table-row .table-field {
+    width: 100%;
+}
+
+.table-row:hover {
+    background: #b4b7e0;
+}
+
+.selected {
+    background: #722286;
+    color: #fff;
+}
