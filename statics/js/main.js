@@ -7,6 +7,9 @@ window.onload = async () => {
 
     let traders = await fetch('/service/bourse/trader/find/all').then(res => res.json());
 
+    if (traders.error)
+        return box1.innerHTML = traders.error.sqlMessage;
+
     for (let trader of traders) {
         let row = document.createElement('div');
 
@@ -30,6 +33,9 @@ async function showActions(targeted, idTrader) {
     box2.innerHTML = '';
 
     let actions = await fetch(`/service/bourse/action/find?idTrader=${idTrader}`).then(res => res.json());
+
+    if (actions.error)
+        return box2.innerHTML = actions.error.sqlMessage;
 
     for (let action of actions) {
         let row = document.createElement('div');
@@ -62,7 +68,7 @@ async function showCloture(targeted, nomAction, montantAchat, quantite) {
         </div>
 
         <div class="table-row">
-            <p class="table-field">Montant achat</p>
+            <p class="table-field">Montant achat</p>                
             <p class="table-field">${quantite * montantAchat}</p>
         </div>
 
@@ -73,7 +79,7 @@ async function showCloture(targeted, nomAction, montantAchat, quantite) {
 
         <div class="table-row">
             <p class="table-field">Gain ou Perte sur l'Action</p>
-            <p class="table-field">${quantite * cloture.close - montantAchat}</p>
+            <p class="table-field">${quantite * cloture.close - quantite * montantAchat}</p>
         </div>
     `;
 }
